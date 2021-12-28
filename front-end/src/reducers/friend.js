@@ -1,7 +1,8 @@
 import {
   DELETE_FRIEND,
     GET_ALL_FRIENDS,
-    GET_FRIEND_FAIL
+    GET_FRIEND_FAIL,
+    GET_ONLINE_FRIENDS
   } from "../features/types";
   
   const friends = JSON.parse(localStorage.getItem("friend"));
@@ -10,7 +11,7 @@ import {
     ? { friends }
     : { friends:null };
   
-  export default function (state = initialState, action) {
+  export default function friendReducer(state = initialState, action) {
     const { type, payload } = action;
   
     switch (type) {
@@ -20,6 +21,11 @@ import {
           friends:null
         };
       case GET_ALL_FRIENDS:
+        return {
+          ...state,
+          friends: payload,
+        };
+      case GET_ONLINE_FRIENDS:
         return {
           ...state,
           friends: payload,

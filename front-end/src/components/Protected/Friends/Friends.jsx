@@ -3,7 +3,7 @@ import Friend from "../Friend/Friend";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllFriends } from "../../../features/friend";
-
+import { connect } from "react-redux";
 
 
 const Friends = () => {
@@ -14,7 +14,7 @@ const Friends = () => {
 
     useEffect(() => {
         dispatch(getAllFriends(token))
-    }, []);
+    }, [friends]);
     
     function randomIntFromInterval(min, max) { // min and max included 
         return Math.floor(Math.random() * (max - min + 1) + min)
@@ -40,4 +40,14 @@ const Friends = () => {
     )
 }
 
-export default Friends
+
+function mapStateToProps(state) {
+    const { Friends } = state.friend;
+    const { message } = state.message;
+    return {
+      Friends,
+      message
+    };
+  }
+  
+  export default connect(mapStateToProps)(Friends);

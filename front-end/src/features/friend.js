@@ -2,7 +2,7 @@ import {
     GET_ALL_FRIENDS,
     GET_FRIEND_FAIL,
     DELETE_FRIEND,
-    SET_MESSAGE
+    SET_MESSAGE,
   } from "./types";
   
   import FriendService from "../services/Friend/FriendService";

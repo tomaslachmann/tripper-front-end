@@ -1,21 +1,65 @@
 import "./TripCreate.css"
 import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+import { create } from "../../../features/trip"
+import Trips from "../../../entity/trip"
+import axios from "axios";
 
-const opts = {
-    name: null,
-    destination: null,
-    startDate: null,
-    endDate: null,
-    maxAttendees: null,
-    tags:[],
-    description:null
-}
 
 const TripCreate = () => {
-    const [tripOptions, setTripOptions] = useState(opts);
+    const [tripOptions, setTripOptions] = useState(Trips);
+    const [whisperer, setWhisperer] = useState(false);
+    const [whispererData, setWhispererData] = useState(null);
+    const [destination, setDestination] = useState("");
+    const navigate = useNavigate();
+    tripOptions.maxAttendees = 2
+    const token = useSelector(state => state.auth.token)
+    const dispatch = useDispatch();
     const saveTrip = (e) => {
         e.preventDefault();
-        console.log(tripOptions);
+        dispatch(create(token, tripOptions))
+        navigate("/trips/my")
+    }
+
+    const Destination = async (e) => {
+        setDestination(e.target.value)
+        const response = await axios.post("http://localhost:4001/utils/country",{searchText:destination})
+        setWhispererData(response.data.countries);
+        setWhisperer(true);
+    }
+
+    const chooseDestination = (iso2, name) => {
+        setTripOptions({...tripOptions, destination: iso2})
+        setDestination(name);
+        setWhisperer(false);
+    }
+
+    const Whisperer = ({children}) => {
+        return(
+            <div className="whisperer">
+                <ul>
+                    {children}
+                </ul>
+            </div>
+        )
+    }
+
+    const WhispOption = (props) => {
+        return(
+            <li onClick={() => chooseDestination(props.iso2, props.name)}>{props.name}</li>
+        )
+    }
+
+    const CreateWhisperer = () => {
+        return(
+        <Whisperer>
+            {whispererData.map((country, i) => {
+                return <WhispOption key={i}  name={country.name} iso2={country.iso2} />
+            })}
+        </Whisperer>
+        )
     }
 
     return(
@@ -30,8 +74,9 @@ const TripCreate = () => {
             <input type="text" 
             name="destination" 
             placeholder="Karibik" 
-            value={tripOptions.destination}
-            onInput={e => setTripOptions({...tripOptions, destination: e.target.value})} />
+            value={destination}
+            onInput={e => Destination(e)} />
+            {whisperer ? <CreateWhisperer /> : ""}
             <p>Datum odjezdu</p>
             <input type="date" 
             name="startDate" 
@@ -71,4 +116,15 @@ const TripCreate = () => {
     )
 }
 
-export default TripCreate
+function mapStateToProps(state) {
+    const { trips } = state.trip;
+    const { message } = state.message;
+    return {
+      trips,
+      message
+    };
+  }
+  
+export default connect(mapStateToProps)(TripCreate);
+
+//export default TripCreate

@@ -34,12 +34,12 @@ const HomePage = () => {
                     </div>
                 </div>
                 <div className="width-100">
-                    <img src="bg.jpg" />
+                    <img />
                 </div>
-                <div className="circle-overlay position-absolute circle1"><img src="circle1.jpg" alt="" /></div>
-                <div className="circle-overlay position-absolute circle2"><img src="circle2.jpg" alt="" /></div>
-                <div className="circle-overlay position-absolute circle3"><img src="circle3.jpg" alt="" /></div>
-                <div className="circle-overlay position-absolute circle4"><img src="circle4.jpg" alt="" /></div>
+                <div className="circle-overlay position-absolute circle1"><img alt="" /></div>
+                <div className="circle-overlay position-absolute circle2"><img alt="" /></div>
+                <div className="circle-overlay position-absolute circle3"><img alt="" /></div>
+                <div className="circle-overlay position-absolute circle4"><img alt="" /></div>
                 
             </div>
             {modalState === 'login' ? <LoginModal setModalState={setModalState} setLogin={setLogin} /> : ""}

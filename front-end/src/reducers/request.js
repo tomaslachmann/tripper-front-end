@@ -1,8 +1,6 @@
 import {
     GET_FRIEND_REQUEST,
     SEND_FRIEND_REQUEST,
-    ACCEPT_FRIEND_REQUEST,
-    DECLINE_FRIEND_REQUEST,
     GET_FRIEND_REQUEST_FAIL,
     HANDLE_FRIEND_REQUEST
   } from "../features/types";
@@ -13,7 +11,7 @@ import {
     ? { requests }
     : { requests:null };
   
-  export default function (state = initialState, action) {
+  export default function requestReducer(state = initialState, action) {
     const { type, payload } = action;
   
     switch (type) {

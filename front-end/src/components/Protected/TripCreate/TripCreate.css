@@ -19,3 +19,20 @@
     border-radius:15px;
     color:white;
 }
+
+.whisperer ul{
+    margin:0;
+    padding:0;
+    text-align: left;
+}
+
+.whisperer ul li{
+    margin:0;
+    padding:.5em;
+    cursor:pointer;
+}
+
+.whisperer ul li:hover{
+    background:blue;
+    color:white;
+}

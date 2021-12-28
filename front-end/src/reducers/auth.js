@@ -13,7 +13,7 @@ import {
     ? { isLoggedIn: true, token, user }
     : { isLoggedIn: false, token: null, user: {id: null, email:null, password: null} };
   
-  export default function (state = initialState, action) {
+  export default function authReducer(state = initialState, action) {
     const { type, payload } = action;
   
     switch (type) {

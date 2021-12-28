@@ -8,6 +8,7 @@ import TripChoose from "../../components/Protected/TripChoose/TripChoose";
 import TripCreate from "../../components/Protected/TripCreate/TripCreate";
 import TripSearch from "../../components/Protected/TripSearch/TripSeach";
 import Friends from "../../components/Protected/Friends/Friends";
+import TripMy from "../../components/Protected/TripMy/TripMy";
 
 
 function ProtectedIndex() {
@@ -19,7 +20,8 @@ function ProtectedIndex() {
           <Route path="/home" element={<HomePage/>} />
           <Route path="/trips" element={ <TripChoose />} />
           <Route path="/trips/create" element={ <TripCreate /> } />
-          <Route path="/trips/search" element={ <TripSearch /> } />    
+          <Route path="/trips/search" element={ <TripSearch /> } />  
+          <Route path="/trips/my" element={ <TripMy /> } /> 
           <Route path="/friends" element={ <Friends /> } />       
         </Routes>
       </Grid>

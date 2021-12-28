@@ -6,6 +6,7 @@ import {
     LOGOUT,
     SET_MESSAGE,
   } from "./types";
+
   
   import AuthService from "../services/Auth/AuthService";
   
@@ -51,7 +52,8 @@ import {
         dispatch({
           type: LOGIN_SUCCESS,
           payload: { token: data.token, user: data.user },
-        });
+        })
+        
   
         return Promise.resolve();
       },

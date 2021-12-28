@@ -1,5 +1,5 @@
 import "./Requests.css";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Request from "../Request/Request";
 import { useSelector, useDispatch } from "react-redux";
 import { get } from "../../../features/request";

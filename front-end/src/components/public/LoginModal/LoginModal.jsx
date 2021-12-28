@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { login } from "../../../features/auth";
 import { useNavigate } from "react-router-dom";
 
+
+
 import "./LoginModal.css"
 
 const LoginModal = (props) => {
@@ -13,6 +15,7 @@ const LoginModal = (props) => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
 
 
     const checkIfEmpty = (input) => {
@@ -27,7 +30,7 @@ const LoginModal = (props) => {
                 props.setLogin(true)
                 navigate("/home")
             })
-        }
+        }  
         else{setEmailTyped(true);}
     }
     

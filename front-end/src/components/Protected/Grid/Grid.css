@@ -29,3 +29,15 @@
     margin-left:2rem;
     text-align: left;
 }
+
+.chat-window-wrap{
+    max-width:100%;
+    min-width:fit-content;
+    position:fixed;
+}
+
+.chat-window-overlay{
+    display:flex;
+    overflow-x:scroll;
+    width:fit-content;
+}

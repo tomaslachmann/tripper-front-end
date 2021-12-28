@@ -1,0 +1,17 @@
+.my-trips-wrap{
+    display:flex;
+    flex-direction: column;
+}
+
+.my-trips-overlay{
+    display:flex;
+    flex-direction: row;
+}
+
+.my-trips-card{
+    margin:.5em;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding:.5em;
+    text-align: left;
+}
