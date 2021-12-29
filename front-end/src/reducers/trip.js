@@ -7,7 +7,8 @@ import {
     TRIP_SEARCH_VALUES_REMOVE,
     GET_CREATED_TRIPS,
     GET_PARTICIPATED_TRIPS,
-    GET_TRIP_BY_ID
+    GET_TRIP_BY_ID,
+    ADD_TRIP_POST
   } from "../features/types";
   
   const trips = JSON.parse(localStorage.getItem("trips"));
@@ -67,6 +68,11 @@ import {
           return {
             ...state,
             tripById:payload
+          }
+      case ADD_TRIP_POST:
+          return {
+            ...state,
+              ...state.tripById.posts.concat(payload)
           }
       default:
         return state;
