@@ -163,6 +163,19 @@ class TripService {
         });
     }
 
+    addTripPost(post) {
+
+      return axios
+        .post("http://localhost:4001/trip/post",post,{headers:{"Content-Type": "multipart/form-data"}})
+        .then(function (response) {
+            return response.data
+        })
+        .catch(function (response) {
+          //handle error
+          console.log(response);
+        });
+    }
+
 }
 
 export default new TripService();

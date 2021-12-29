@@ -1,10 +1,22 @@
 
 import "./Home.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { get } from "../../../features/Post";
 import StorySmall from "../../../components/Protected/Stories/StorySmall";
 
 const HomePage = () => {
     const [status, setStatus] = useState("");
+    const [posts, setPosts] = useState(null);
+    const dispatch = useDispatch();
+    const PostsSelector = useSelector(state => state.posts);;
+    const token = useSelector(state => state.auth.token)
+
+    useEffect(() => {
+        dispatch(get(token))
+        setPosts(PostsSelector);
+        console.log(posts)
+    }, [PostsSelector])
 
     let arr = [];
     for(let i = 0; i < 10; i++){

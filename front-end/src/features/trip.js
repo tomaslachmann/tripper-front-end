@@ -10,7 +10,8 @@ import {
     TRIP_SEARCH_VALUES_REMOVE,
     GET_CREATED_TRIPS,
     GET_PARTICIPATED_TRIPS,
-    GET_TRIP_BY_ID
+    GET_TRIP_BY_ID,
+    ADD_TRIP_POST
   } from "./types";
   
 
@@ -331,6 +332,43 @@ import {
       (response) => {
         dispatch({
           type: GET_TRIP_BY_ID,
+          payload: response
+        });
+  
+        dispatch({
+          type: SET_MESSAGE,
+          payload: response.data.message,
+        });
+  
+        return Promise.resolve();
+      },
+      (error) => {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+  
+        dispatch({
+          type: GET_TRIPS_FAIL,
+        });
+  
+        dispatch({
+          type: SET_MESSAGE,
+          payload: message,
+        });
+  
+        return Promise.reject();
+      }
+    );
+  };
+
+  export const addTripPost = (post) => (dispatch) => {
+    return TripService.addTripPost(post).then(
+      (response) => {
+        dispatch({
+          type: ADD_TRIP_POST,
           payload: response
         });
   

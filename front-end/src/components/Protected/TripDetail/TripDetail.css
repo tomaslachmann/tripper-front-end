@@ -2,3 +2,29 @@
     display:grid;
     grid-template-columns: repeat(2,1fr);
 }
+
+.trip-post{
+    display:flex;
+    flex-direction:column;
+    margin:0!important;
+    padding:0 !important;
+}
+.post p{
+    margin:0;
+}
+
+.post-attachments-wrap{
+    display:flex;
+    flex-wrap:wrap;
+}
+.post-attachment{
+    display:flex;
+    flex-direction: column;
+    cursor:pointer;
+    padding:1em;
+}
+
+.post-attachment img{
+    background-color: red;
+    height:3rem;
+}
